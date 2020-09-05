@@ -1,7 +1,20 @@
 # Overview
 
+- 以下コマンドでコンテナ作成．
+
 ```console
-sudo docker run --rm -it miorgash/spacy:latest /bin/bash
+sudo docker run --rm -it --name spacy dig/spacy:latest /bin/bash
+```
+
+- ユーザー辞書は永続化し，コンテナ生成の都度マウントする
+- spacy から利用される辞書はコンテナ生成の都度 sudachi.json に以下の通り追記し指定する
+
+```json
+{
+    ...,
+    "userDict" : ["user.dic"]
+    ...
+}
 ```
 
 # ユーザー辞書作成方法
