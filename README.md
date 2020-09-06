@@ -1,8 +1,9 @@
 # Overview
 
-- 以下コマンドでコンテナ作成．
+- 以下コマンドでコンテナと VOLUME 作成．
 
 ```console
+sudo docker volume create sudachipy
 sudo docker run --rm -it --name spacy dig/spacy:latest /bin/bash
 ```
 
