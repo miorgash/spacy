@@ -1,11 +1,24 @@
 # Overview
 
-- 以下コマンドでコンテナと VOLUME 作成．
+- RUN
 
 ```console
-sudo docker volume create sudachipy
-sudo docker run --rm -it --name spacy dig/spacy:latest /bin/bash
+sudo docker run --rm -it --name spacy \
+    -v ~/assets/app/spacy/resources/sudachi.json:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json \
+    -v ~/assets/app/spacy/resources/user.csv:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.csv \
+    dig/spacy:latest /bin/bash
 ```
+
+- Build user dict
+
+```console
+cd /usr/local/lib/python3.7/dist-packages/sudachipy/resources
+sudachipy ubuild -s ../../sudachidict_core/resources/system.dic user.csv
+```
+
+[Sudachi/user\_dict.md](https://github.com/WorksApplications/Sudachi/blob/develop/docs/user_dict.md)参照
+
+# Point
 
 - ユーザー辞書は永続化し，コンテナ生成の都度マウントする
 - spacy から利用される辞書はコンテナ生成の都度 sudachi.json に以下の通り追記し指定する
@@ -18,13 +31,6 @@ sudo docker run --rm -it --name spacy dig/spacy:latest /bin/bash
 }
 ```
 
-# ユーザー辞書作成方法
-```console
-$ pwd
-/usr/local/lib/python3.7/dist-packages/sudachipy/resources
-$ sudachipy ubuild -s ../../sudachidict_core/resources/system.dic user.csv
-```
-[Sudachi/user_dict.md](https://github.com/WorksApplications/Sudachi/blob/develop/docs/user_dict.md)参照
 
 # sudachipy コマンドラインからユーザー辞書を使う方法
 ```console

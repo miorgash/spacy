@@ -16,3 +16,5 @@ RUN : "for tokenize and dependency analysis" && \
         sudachidict_small==20200722 \
         sudachidict_full==20200722
 RUN sudachipy link -t core
+RUN SUDACHIPATH=`python3.7 -c "import sudachipy as _; print(_.__path__[0])"` && \
+    mv ${SUDACHIPATH}/resources/sudachi.json ${SUDACHIPATH}/resources/sudachi.json.bak
