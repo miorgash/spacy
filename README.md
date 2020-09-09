@@ -1,12 +1,47 @@
+# 使い方（ユーザー向け）
+
+ブラウザまたは API で利用する．
+
+## ブラウザから
+
+1. `http://${ip}:5108` にアクセス
+2. テキストを入力
+
+## Python から
+
+```python
+import request
+...
+```
+
+
+# メンテナンス（管理者向け）
+## 起動
+
+```bash
+nohup sudo docker &
+```
+
+## 辞書更新
+
+他の人の解析結果にも影響するため注意
+
+- 
+
+
+
+---
+
 # Overview
 
 - RUN
 
 ```console
-sudo docker run --rm -it --name spacy \
-    -v ~/assets/app/spacy/resources/sudachi.json:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json \
-    -v ~/assets/app/spacy/resources/user.csv:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.csv \
-    dig/spacy:latest /bin/bash
+sudo docker run --rm --name spacy \
+    -v nlp-data:/nlp-data \
+    -v ${PWD}/resources/sudachi.json:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json \
+    -v ${PWD}/resources/user.csv:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.csv \
+    -p 5109:5109 dig/spacy:latest
 ```
 
 - Build user dict

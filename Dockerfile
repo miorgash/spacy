@@ -18,3 +18,6 @@ RUN : "for tokenize and dependency analysis" && \
 RUN sudachipy link -t core
 RUN SUDACHIPATH=`python3.7 -c "import sudachipy as _; print(_.__path__[0])"` && \
     mv ${SUDACHIPATH}/resources/sudachi.json ${SUDACHIPATH}/resources/sudachi.json.bak
+RUN echo "v.0.6.0"
+ADD spacy/ /spacy
+ENTRYPOINT ["python3.7", "/spacy/app.py"]
