@@ -1,5 +1,5 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
-from flask import Flask, request, make_response, render_template, jsonify, redirect, url_for
+from flask import Flask, request, make_response, render_template, jsonify, redirect, url_for, send_file
 import os
 import json
 import tokenizer
@@ -24,12 +24,14 @@ def upload_multipart():
     file_.save(file_path)
 
     # tokenize
+    # todo: 別 func に切り出す．画面分ける？
+    # upload 後に tokenize の種類選べるようにする．
     print(file_path)
     tokenized = tokenizer.tokenize(file_path)
     with open(json_path, 'w') as f:
         json.dump(tokenized, f, ensure_ascii=False, indent=4)
 
-    return redirect(url_for("thanks")) # 関数名で指定
+    return send_file(json_path, as_attachment=True)
 
 @app.route("/thanks")
 def thanks():
