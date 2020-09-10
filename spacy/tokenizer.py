@@ -6,9 +6,7 @@ def tokenize(file_path):
     ids = df.iloc[:, 0]
     texts = df.iloc[:, 1]
 
-    res = {id_: _tokenize(text) for id_, text in zip(ids, texts)}
-
-    return res
+    return {id_: _tokenize(text) for id_, text in zip(ids, texts)}
 
 def _tokenize(text):
     nlp = spacy.load('ja_ginza')
@@ -17,6 +15,11 @@ def _tokenize(text):
     tokenized = []
     for sent in doc.sents:
         for token in sent:
-            tokenized.append(token.orth_)
-            # print(token.orth_, token.tag_)
+            tokenized.append([
+                token.text,
+                token.lemma_,
+                token.pos_,
+                token.tag_,
+                token.dep_
+            ])
     return tokenized

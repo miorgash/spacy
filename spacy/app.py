@@ -24,18 +24,12 @@ def upload_multipart():
     file_.save(file_path)
 
     # tokenize
-    # todo: 別 func に切り出す．画面分ける？
-    # upload 後に tokenize の種類選べるようにする．
     print(file_path)
     tokenized = tokenizer.tokenize(file_path)
     with open(json_path, 'w') as f:
         json.dump(tokenized, f, ensure_ascii=False, indent=4)
 
     return send_file(json_path, as_attachment=True)
-
-@app.route("/thanks")
-def thanks():
-    return render_template("thanks.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5108)
