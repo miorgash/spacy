@@ -3,16 +3,14 @@ import spacy
 
 def tokenize(file_path):
     df = pd.read_csv(file_path)
-    ids_ = df.iloc[:, 0]
+    ids = df.iloc[:, 0]
     texts = df.iloc[:, 1]
 
-    id_, tokenized = _tokenize('A', '舞台藝術が好きです。音楽鑑賞よりも好きです。')
-    res = {}
-    res[id_] = tokenized
+    res = {id_: _tokenize(text) for id_, text in zip(ids, texts)}
 
     return res
 
-def _tokenize(id_, text):
+def _tokenize(text):
     nlp = spacy.load('ja_ginza')
     doc = nlp(text)
 
@@ -21,4 +19,4 @@ def _tokenize(id_, text):
         for token in sent:
             tokenized.append(token.orth_)
             # print(token.orth_, token.tag_)
-    return id_, tokenized
+    return tokenized

@@ -24,6 +24,7 @@ def upload_multipart():
     file_.save(file_path)
 
     # tokenize
+    print(file_path)
     tokenized = tokenizer.tokenize(file_path)
     with open(json_path, 'w') as f:
         json.dump(tokenized, f, ensure_ascii=False, indent=4)
