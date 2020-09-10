@@ -41,7 +41,8 @@ sudo docker run --rm --name spacy \
     -v nlp-data:/nlp-data \
     -v ${PWD}/resources/sudachi.json:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json \
     -v ${PWD}/resources/user.csv:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.csv \
-    -p 5109:5109 dig/spacy:latest
+    -v ${PWD}/resources/user.dic:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.dic \
+    -p 5108:5108 dig/spacy:latest
 ```
 
 - Build user dict
