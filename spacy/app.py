@@ -13,9 +13,7 @@ def home():
 def upload_multipart():
     # TODO: RESTful に変更
     file_ = request.files['uploadFile']
-    fileName = file_.filename
-
-    file_.save(os.path.join(UPLOAD_DIR, fileName))
+    file_.save(os.path.join(UPLOAD_DIR, file_.filename))
     return redirect(url_for("thanks")) # 関数名で指定
 
 @app.route("/thanks")
