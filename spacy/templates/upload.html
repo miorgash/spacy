@@ -4,9 +4,95 @@
 <meta charset="utf-8" />
 </head>
 <body>
+<h1>Sudachi Tokenizer</h1>
 <form action="/upload" method="post" enctype="multipart/form-data">
   <input type="file" name="uploadFile"/>
   <input type="submit" value="submit"/>
 </form>
+<h2>使い方</h2>
+<p>csv を選択して Submit するとトークナイズの結果が JSON 形式でダウンロードされます．</p>
+
+<h3>入力形式</h3>
+
+<p><pre>
+2 列の csv のみ処理可能．</br>
+1 列目：id</br>
+2 列目：テキスト</br>
+</br>
+例</br>
+id, value</br>
+1, "舞台藝術が好きなんです。"</br>
+2, "初音ミクは歌が上手です。"</br>
+</pre></p>
+
+<h3>出力形式</h3>
+<p><pre>
+spaCy の API Reference（https://spacy.io/api/token#attributes）参照</br>
+</br>
+{</br>
+    id : [</br>
+        [</br>
+            表層形（Token.text）,</br>
+            見出語（Token.lemma_）,</br>
+            品詞（全言語共通のもの）（Token.pos_）,</br>
+            品詞（日本語のもの）（Token.tag_）,</br>
+            依存関係 # Token.dep_</br>
+        ]</br>
+}</br>
+</br>
+例</br>
+</br>
+{</br>
+    "1": [</br>
+        [</br>
+            "舞台藝術",</br>
+            "舞台藝術",</br>
+            "NOUN",</br>
+            "名詞-普通名詞-一般",</br>
+            "nsubj"</br>
+        ],</br>
+        [</br>
+            "が",</br>
+            "が",</br>
+            "ADP",</br>
+            "助詞-格助詞",</br>
+            "case"</br>
+        ],</br>
+        [</br>
+            "好き",</br>
+            "好き",</br>
+            "ADJ",</br>
+            "形状詞-一般",</br>
+            "ROOT"</br>
+        ],</br>
+        ...</br>
+    ],</br>
+    "2": [</br>
+        [</br>
+            "初音",</br>
+            "初音",</br>
+            "PROPN",</br>
+            "名詞-固有名詞-人名-姓",</br>
+            "compound"</br>
+        ],</br>
+        [</br>
+            "ミク",</br>
+            "ミク",</br>
+            "PROPN",</br>
+            "名詞-固有名詞-人名-名",</br>
+            "dislocated"</br>
+        ],</br>
+        [</br>
+            "は",</br>
+            "は",</br>
+            "ADP",</br>
+            "助詞-係助詞",</br>
+            "case"</br>
+        ],</br>
+        ...</br>
+    ]</br>
+}</br>
+</pre></p>
+
 </body>
 </html>
