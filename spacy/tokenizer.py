@@ -2,7 +2,10 @@ import pandas as pd
 import spacy
 
 def tokenize(file_path):
-    df = pd.read_csv(file_path)
+    try:
+        df = pd.read_csv(file_path)
+    except UnicodeDecodeError:
+        df = pd.read_csv(file_path, encoding='cp932')
     ids = df.iloc[:, 0]
     texts = df.iloc[:, 1]
 
