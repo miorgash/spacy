@@ -37,11 +37,12 @@ nohup sudo docker &
 - RUN
 
 ```console
+SUDACHI_HOME=/usr/local/lib/python3.7/dist-packages/sudachipy
 sudo docker run --rm --name spacy \
     -v nlp-data:/nlp-data \
-    -v ${PWD}/resources/sudachi.json:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json \
-    -v ${PWD}/resources/user.csv:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.csv \
-    -v ${PWD}/resources/user.dic:/usr/local/lib/python3.7/dist-packages/sudachipy/resources/user.dic \
+    -v ${PWD}/resources/sudachi.json:${SUDACHI_HOME}/resources/sudachi.json \
+    -v ${PWD}/resources/user.csv:${SUDACHI_HOME}/resources/user.csv \
+    -v ${PWD}/resources/user.dic:${SUDACHI_HOME}/resources/user.dic \
     -p 5108:5108 dig/spacy:latest
 ```
 
