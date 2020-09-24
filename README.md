@@ -17,17 +17,26 @@ import request
 # メンテナンス（管理者向け）
 ## 起動
 
-ユーザー辞書は永続化し，コンテナ生成の都度マウントする
+ユーザー辞書・アップロードされるデータを `nlp-data` コンテナで永続化する  
+`nlp-data` を削除しても VOLUME は残るが `--volumes-from` でマウントすることができなくなるため注意
 
 ```console
-SUDACHI_HOME=/usr/local/lib/python3.7/dist-packages/sudachipy
-nohup sudo docker run --rm --name spacy \
-    -v nlp-data:/nlp-data \
-    -v ${PWD}/resources/sudachi.json:${SUDACHI_HOME}/resources/sudachi.json \
-    -v ${PWD}/resources/user.csv:${SUDACHI_HOME}/resources/user.csv \
-    -v ${PWD}/resources/user.dic:${SUDACHI_HOME}/resources/user.dic \
-    -p 5108:5108 dig/spacy:latest &
+sudo docker run --name nlp-data dig/nlp-data:latest
+sudo docker run --rm --name spacy-test --volumes-from nlp-data -p 5108:5108 dig/spacy:latest
 ```
+
+Docker Volume についてのメモ
+
+- ビルド時に Dockerfile にて VOLUME コマンドを実行した場合，ビルドされるイメージに VOLUME はついてくるか？；ビルドを実施したホスト以外で，--volume-from コマンドで当該ボリュームをマウントすることは可能か？
+    - 問いの立て方が間違っている；VOLUME はコンテナ起動時に作成される．
+
+これからやること
+
+- `dig/nlp-data` コンテナ作成
+    - `sudachipy/resources` と `/nlp-data` を `VOLUME` コマンドで指定するだけのコンテナ
+- `dig/spacy` Dockerfile 修正
+    - `sudachipy/resources` を必要であれば削除（VOLUME vs コンテナ上のファイルだったら前者がおそらく勝つので，おそらく不要）
+    - VOLUME vs コンテナ上のファイルだと前者の内容で後者が上書きされることを確認した．
 
 ## 辞書更新
 
