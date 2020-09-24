@@ -16,9 +16,8 @@ RUN : "for tokenize and dependency analysis" && \
         sudachidict_small==20200722 \
         sudachidict_full==20200722
 RUN sudachipy link -t core
-RUN SUDACHIPATH=`python3.7 -c "import sudachipy as _; print(_.__path__[0])"` && \
-    mv ${SUDACHIPATH}/resources/sudachi.json ${SUDACHIPATH}/resources/sudachi.json.bak
+RUN mkdir -p /nlp-data/uploaded && \
+    mkdir -p /nlp-data/tokenized
 RUN pip install pandas
-RUN echo "v.0.6.0"
 ADD spacy/ /spacy
 ENTRYPOINT ["python3.7", "/spacy/app.py"]
