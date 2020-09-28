@@ -13,7 +13,7 @@ def home():
     return render_template("upload.html")
 
 @app.route("/tokenize_csv", methods=['POST'])
-def upload_multipart():
+def form_tokenize_csv():
     # TODO: RESTful に変更
     file_ = request.files['uploadFile']
     file_path = os.path.join(UPLOAD_DIR, file_.filename)
