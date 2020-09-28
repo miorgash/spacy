@@ -1,5 +1,5 @@
 # not working with gpu
-version: '3'
+version: '3.8'
 services:
   spacy:
     image: dig/spacy:latest
@@ -12,4 +12,6 @@ services:
       - sudachipy-resources:/usr/local/lib/python3.7/dist-packages/sudachipy/resources
 volumes:
   nlp-data:
+    name: nlp-data
   sudachipy-resources:
+    name: sudachipy-resources
