@@ -12,7 +12,7 @@ TOKENIZE_DIR = '/nlp-data/tokenized'
 def home():
     return render_template("upload.html")
 
-@app.route("/upload", methods=['POST'])
+@app.route("/tokenize_csv", methods=['POST'])
 def upload_multipart():
     # TODO: RESTful に変更
     file_ = request.files['uploadFile']
