@@ -22,7 +22,10 @@ sudo docker-compose up -d
 ```
 
 ```console
-nohup sudo docker run --rm --name spacy-test -v nlp-data:/nlp-data -p 5108:5108 dig/spacy:latest &
+nohup sudo docker run --rm --name spacy \
+    -v nlp-data:/nlp-data \
+    -v sudachipy-resources:/usr/local/lib/python3.7/dist-packages/sudachipy/resources \
+    -p 5108:5108 dig/spacy:latest &
 ```
 
 メモ： volume を コンテナのコンテンツにマウントした場合，以下の優先度でコンテンツが残る
