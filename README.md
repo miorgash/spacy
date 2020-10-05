@@ -38,10 +38,10 @@ sudo docker-compose up -d
 ```
 
 ```console
-nohup sudo docker run --rm --name spacy \
-    -v tokenizer:~/data/tokenizer \
+nohup sudo docker run --rm --name tokenizer \
+    -v tokenizer:/data/tokenizer \
     -v sudachipy-resources:/usr/local/lib/python3.7/dist-packages/sudachipy/resources \
-    -p 5108:5108 dig/spacy:latest &
+    -p 5108:5108 dig/tokenizer:latest &
 ```
 
 メモ： volume を コンテナのコンテンツにマウントした場合，以下の優先度でコンテンツが残る

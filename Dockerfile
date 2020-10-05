@@ -16,8 +16,8 @@ RUN : "for tokenize and dependency analysis" && \
         sudachidict_small==20200722 \
         sudachidict_full==20200722
 RUN sudachipy link -t core
-RUN mkdir -p ~/data/tokenizer/uploaded && \
-    mkdir -p ~/data/tokenizer/tokenized
+RUN mkdir -p /data/tokenizer/uploaded && \
+    mkdir -p /data/tokenizer/tokenized
 RUN pip install pandas
 ADD tokenizer/ /tokenizer
-ENTRYPOINT ["python3.7", "/spacy/app.py"]
+ENTRYPOINT ["python3.7", "/tokenizer/app.py"]
