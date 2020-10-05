@@ -19,5 +19,5 @@ RUN sudachipy link -t core
 RUN mkdir -p ~/data/tokenizer/uploaded && \
     mkdir -p ~/data/tokenizer/tokenized
 RUN pip install pandas
-ADD spacy/ /spacy
+ADD tokenizer/ /tokenizer
 ENTRYPOINT ["python3.7", "/spacy/app.py"]
