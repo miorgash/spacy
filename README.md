@@ -39,7 +39,7 @@ sudo docker-compose up -d
 
 ```console
 nohup sudo docker run --rm --name spacy \
-    -v nlp-data:/nlp-data \
+    -v tokenizer:~/data/tokenizer \
     -v sudachipy-resources:/usr/local/lib/python3.7/dist-packages/sudachipy/resources \
     -p 5108:5108 dig/spacy:latest &
 ```

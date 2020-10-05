@@ -5,8 +5,8 @@ import json
 import tokenizer
 
 app = Flask(__name__)
-UPLOAD_DIR = '/nlp-data/uploaded'
-TOKENIZE_DIR = '/nlp-data/tokenized'
+UPLOAD_DIR = '~/data/tokenizer/uploaded'
+TOKENIZE_DIR = '~/data/tokenizer/tokenized'
 
 @app.route("/")
 def home():

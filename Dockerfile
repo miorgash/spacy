@@ -16,8 +16,8 @@ RUN : "for tokenize and dependency analysis" && \
         sudachidict_small==20200722 \
         sudachidict_full==20200722
 RUN sudachipy link -t core
-RUN mkdir -p /nlp-data/uploaded && \
-    mkdir -p /nlp-data/tokenized
+RUN mkdir -p ~/data/tokenizer/uploaded && \
+    mkdir -p ~/data/tokenizer/tokenized
 RUN pip install pandas
 ADD spacy/ /spacy
 ENTRYPOINT ["python3.7", "/spacy/app.py"]

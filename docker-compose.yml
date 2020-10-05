@@ -8,10 +8,10 @@ services:
     ports:
       - 5108:5108
     volumes:
-      - nlp-data:/nlp-data
+      - tokenizer:~/data/tokenizer
       - sudachipy-resources:/usr/local/lib/python3.7/dist-packages/sudachipy/resources
 volumes:
-  nlp-data:
-    name: nlp-data
+  tokenizer:
+    name: tokenizer
   sudachipy-resources:
     name: sudachipy-resources
